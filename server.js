@@ -3,13 +3,14 @@ import { Stream } from 'stream';
 import express from 'express'
 import expressWs from 'express-ws'; 
 import ffmpeg from 'fluent-ffmpeg';
-import ffmpegStatic from 'ffmpeg-static';
-import ffprobe  from 'ffprobe-static';
-ffmpeg.setFfmpegPath(ffmpegStatic);
-ffmpeg.setFfprobePath(ffprobe.path);
+// import ffmpegStatic from 'ffmpeg-static';
+// import ffprobe  from 'ffprobe-static';
+import ffmpegPath from '@ffmpeg-installer/ffmpeg';
+ffmpeg.setFfmpegPath(ffmpegPath.path);
+//ffmpeg.setFfprobePath(ffprobe.path);
 const app = express();
 expressWs(app);
-
+console.log(ffmpegPath);
 let imagesQueue = []; // mảnh lưu trữ các buffer của hình ảnh
 const streamConnections = []; // Mảng lưu trữ các kết nối trong endpoint "/stream"
 let flag=0;
